@@ -1,0 +1,46 @@
+CREATE TABLE artists(
+   ID serial primary key not null,
+   Name varchar(100) not null,
+);
+
+CREATE TABLE Gener(
+   ID serial primary key not null,
+   Name varchar(100) not null,
+);
+
+CREATE TABLE GenerID(
+   ID serial primary key not null,
+   GenerID integer not null references gener(id),
+   ArtistID integer not null references artist(id),
+);
+
+CREATE TABLE Albums(
+   ID serial primary key not null,
+   Name varchar(100) not null,
+   Year integer not null,
+);
+
+CREATE TABLE AlbumID(
+   ID serial primary key not null,
+   ArtistsID integer not null references artists(id),
+   AlbumID integer not null references albums(id),
+);
+
+CREATE TABLE song(
+   ID serial primary key not null,
+   Name text not null,
+   Duration int not null,
+   Album ID integer not null references albums(id),
+);
+
+CREATE TABLE MixTape(
+   ID serial primary key not null,
+   Name varchar(100) not null,
+   Year integer not null,
+);
+
+CREATE TABLE MixTapeID(
+   ID serial primary key not null,
+   SongID integer not null references song(id),
+   MixTapeID integer not null references mixtape(id),
+);
